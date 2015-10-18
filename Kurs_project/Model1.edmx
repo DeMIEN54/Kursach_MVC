@@ -1,0 +1,469 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище azsModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cena">
+          <Key>
+            <PropertyRef Name="CenaID" />
+          </Key>
+          <Property Name="CenaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FuelID" Type="int" />
+          <Property Name="Cena" Type="money" />
+          <Property Name="Data" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Emkost">
+          <Key>
+            <PropertyRef Name="EmkostiID" />
+          </Key>
+          <Property Name="EmkostiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Obyem" Type="float" />
+          <Property Name="FuelID" Type="int" />
+          <Property Name="OperaciiID" Type="int" />
+          <Property Name="SotrudnikID" Type="int" />
+        </EntityType>
+        <EntityType Name="Fuel">
+          <Key>
+            <PropertyRef Name="FuelID" />
+          </Key>
+          <Property Name="FuelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FuelType" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Operaciya">
+          <Key>
+            <PropertyRef Name="OperaciiID" />
+          </Key>
+          <Property Name="OperaciiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Litr" Type="float" />
+          <Property Name="Data" Type="datetime" />
+          <Property Name="EmkostiID" Type="int" />
+          <Property Name="FuelID" Type="int" />
+          <Property Name="SotrudnikID" Type="int" />
+        </EntityType>
+        <EntityType Name="Sotrudnik">
+          <Key>
+            <PropertyRef Name="SotrudnikID" />
+          </Key>
+          <Property Name="SotrudnikID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Familia" Type="nvarchar" MaxLength="50" />
+          <Property Name="Doljnost" Type="nvarchar" MaxLength="50" />
+          <Property Name="OperaciiID" Type="int" />
+        </EntityType>
+        <EntityType Name="Stata">
+          <Key>
+            <PropertyRef Name="StataID" />
+          </Key>
+          <Property Name="StataID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Plotnost" Type="int" />
+          <Property Name="Oktan" Type="int" />
+          <Property Name="Cvet" Type="nvarchar" MaxLength="50" />
+          <Property Name="FuelID" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Cenaes_Fuels">
+          <End Role="Fuel" Type="Self.Fuel" Multiplicity="0..1" />
+          <End Role="Cena" Type="Self.Cena" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fuel">
+              <PropertyRef Name="FuelID" />
+            </Principal>
+            <Dependent Role="Cena">
+              <PropertyRef Name="FuelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fuels_Emkosties">
+          <End Role="Emkost" Type="Self.Emkost" Multiplicity="1" />
+          <End Role="Fuel" Type="Self.Fuel" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Emkost">
+              <PropertyRef Name="EmkostiID" />
+            </Principal>
+            <Dependent Role="Fuel">
+              <PropertyRef Name="FuelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Operaciies_Emkosties">
+          <End Role="Emkost" Type="Self.Emkost" Multiplicity="0..1" />
+          <End Role="Operaciya" Type="Self.Operaciya" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Emkost">
+              <PropertyRef Name="EmkostiID" />
+            </Principal>
+            <Dependent Role="Operaciya">
+              <PropertyRef Name="EmkostiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Operaciies_Fuels">
+          <End Role="Fuel" Type="Self.Fuel" Multiplicity="0..1" />
+          <End Role="Operaciya" Type="Self.Operaciya" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fuel">
+              <PropertyRef Name="FuelID" />
+            </Principal>
+            <Dependent Role="Operaciya">
+              <PropertyRef Name="FuelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Operaciya_Sotrudnik">
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="0..1" />
+          <End Role="Operaciya" Type="Self.Operaciya" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudnik">
+              <PropertyRef Name="SotrudnikID" />
+            </Principal>
+            <Dependent Role="Operaciya">
+              <PropertyRef Name="SotrudnikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Statyes_Fuels">
+          <End Role="Fuel" Type="Self.Fuel" Multiplicity="0..1" />
+          <End Role="Stata" Type="Self.Stata" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fuel">
+              <PropertyRef Name="FuelID" />
+            </Principal>
+            <Dependent Role="Stata">
+              <PropertyRef Name="FuelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище azsModelContainer">
+          <EntitySet Name="Cena" EntityType="Self.Cena" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Emkost" EntityType="Self.Emkost" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fuel" EntityType="Self.Fuel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Operaciya" EntityType="Self.Operaciya" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sotrudnik" EntityType="Self.Sotrudnik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Stata" EntityType="Self.Stata" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Cenaes_Fuels" Association="Self.FK_Cenaes_Fuels">
+            <End Role="Fuel" EntitySet="Fuel" />
+            <End Role="Cena" EntitySet="Cena" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fuels_Emkosties" Association="Self.FK_Fuels_Emkosties">
+            <End Role="Emkost" EntitySet="Emkost" />
+            <End Role="Fuel" EntitySet="Fuel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Operaciies_Emkosties" Association="Self.FK_Operaciies_Emkosties">
+            <End Role="Emkost" EntitySet="Emkost" />
+            <End Role="Operaciya" EntitySet="Operaciya" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Operaciies_Fuels" Association="Self.FK_Operaciies_Fuels">
+            <End Role="Fuel" EntitySet="Fuel" />
+            <End Role="Operaciya" EntitySet="Operaciya" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Operaciya_Sotrudnik" Association="Self.FK_Operaciya_Sotrudnik">
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+            <End Role="Operaciya" EntitySet="Operaciya" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Statyes_Fuels" Association="Self.FK_Statyes_Fuels">
+            <End Role="Fuel" EntitySet="Fuel" />
+            <End Role="Stata" EntitySet="Stata" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="azsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cena">
+          <Key>
+            <PropertyRef Name="CenaID" />
+          </Key>
+          <Property Name="CenaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FuelID" Type="Int32" />
+          <Property Name="Cena1" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Data" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Fuel" Relationship="Self.FK_Cenaes_Fuels" FromRole="Cena" ToRole="Fuel" />
+        </EntityType>
+        <EntityType Name="Emkost">
+          <Key>
+            <PropertyRef Name="EmkostiID" />
+          </Key>
+          <Property Name="EmkostiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Obyem" Type="Double" />
+          <Property Name="FuelID" Type="Int32" />
+          <Property Name="OperaciiID" Type="Int32" />
+          <Property Name="SotrudnikID" Type="Int32" />
+          <NavigationProperty Name="Fuel" Relationship="Self.FK_Fuels_Emkosties" FromRole="Emkost" ToRole="Fuel" />
+          <NavigationProperty Name="Operaciya" Relationship="Self.FK_Operaciies_Emkosties" FromRole="Emkost" ToRole="Operaciya" />
+        </EntityType>
+        <EntityType Name="Fuel">
+          <Key>
+            <PropertyRef Name="FuelID" />
+          </Key>
+          <Property Name="FuelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FuelType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Cena" Relationship="Self.FK_Cenaes_Fuels" FromRole="Fuel" ToRole="Cena" />
+          <NavigationProperty Name="Emkost" Relationship="Self.FK_Fuels_Emkosties" FromRole="Fuel" ToRole="Emkost" />
+          <NavigationProperty Name="Operaciya" Relationship="Self.FK_Operaciies_Fuels" FromRole="Fuel" ToRole="Operaciya" />
+          <NavigationProperty Name="Stata" Relationship="Self.FK_Statyes_Fuels" FromRole="Fuel" ToRole="Stata" />
+        </EntityType>
+        <EntityType Name="Operaciya">
+          <Key>
+            <PropertyRef Name="OperaciiID" />
+          </Key>
+          <Property Name="OperaciiID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Litr" Type="Double" />
+          <Property Name="Data" Type="DateTime" Precision="3" />
+          <Property Name="EmkostiID" Type="Int32" />
+          <Property Name="FuelID" Type="Int32" />
+          <Property Name="SotrudnikID" Type="Int32" />
+          <NavigationProperty Name="Emkost" Relationship="Self.FK_Operaciies_Emkosties" FromRole="Operaciya" ToRole="Emkost" />
+          <NavigationProperty Name="Fuel" Relationship="Self.FK_Operaciies_Fuels" FromRole="Operaciya" ToRole="Fuel" />
+          <NavigationProperty Name="Sotrudnik" Relationship="Self.FK_Operaciya_Sotrudnik" FromRole="Operaciya" ToRole="Sotrudnik" />
+        </EntityType>
+        <EntityType Name="Sotrudnik">
+          <Key>
+            <PropertyRef Name="SotrudnikID" />
+          </Key>
+          <Property Name="SotrudnikID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Familia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Doljnost" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OperaciiID" Type="Int32" />
+          <NavigationProperty Name="Operaciya" Relationship="Self.FK_Operaciya_Sotrudnik" FromRole="Sotrudnik" ToRole="Operaciya" />
+        </EntityType>
+        <EntityType Name="Stata">
+          <Key>
+            <PropertyRef Name="StataID" />
+          </Key>
+          <Property Name="StataID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Plotnost" Type="Int32" />
+          <Property Name="Oktan" Type="Int32" />
+          <Property Name="Cvet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FuelID" Type="Int32" />
+          <NavigationProperty Name="Fuel" Relationship="Self.FK_Statyes_Fuels" FromRole="Stata" ToRole="Fuel" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Cenaes_Fuels">
+          <End Role="Fuel" Type="Self.Fuel" Multiplicity="0..1" />
+          <End Role="Cena" Type="Self.Cena" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fuel">
+              <PropertyRef Name="FuelID" />
+            </Principal>
+            <Dependent Role="Cena">
+              <PropertyRef Name="FuelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fuels_Emkosties">
+          <End Role="Emkost" Type="Self.Emkost" Multiplicity="1" />
+          <End Role="Fuel" Type="Self.Fuel" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Emkost">
+              <PropertyRef Name="EmkostiID" />
+            </Principal>
+            <Dependent Role="Fuel">
+              <PropertyRef Name="FuelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Operaciies_Emkosties">
+          <End Role="Emkost" Type="Self.Emkost" Multiplicity="0..1" />
+          <End Role="Operaciya" Type="Self.Operaciya" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Emkost">
+              <PropertyRef Name="EmkostiID" />
+            </Principal>
+            <Dependent Role="Operaciya">
+              <PropertyRef Name="EmkostiID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Operaciies_Fuels">
+          <End Role="Fuel" Type="Self.Fuel" Multiplicity="0..1" />
+          <End Role="Operaciya" Type="Self.Operaciya" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fuel">
+              <PropertyRef Name="FuelID" />
+            </Principal>
+            <Dependent Role="Operaciya">
+              <PropertyRef Name="FuelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Statyes_Fuels">
+          <End Role="Fuel" Type="Self.Fuel" Multiplicity="0..1" />
+          <End Role="Stata" Type="Self.Stata" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fuel">
+              <PropertyRef Name="FuelID" />
+            </Principal>
+            <Dependent Role="Stata">
+              <PropertyRef Name="FuelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Operaciya_Sotrudnik">
+          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="0..1" />
+          <End Role="Operaciya" Type="Self.Operaciya" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sotrudnik">
+              <PropertyRef Name="SotrudnikID" />
+            </Principal>
+            <Dependent Role="Operaciya">
+              <PropertyRef Name="SotrudnikID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="azsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cena" EntityType="Self.Cena" />
+          <EntitySet Name="Emkost" EntityType="Self.Emkost" />
+          <EntitySet Name="Fuel" EntityType="Self.Fuel" />
+          <EntitySet Name="Operaciya" EntityType="Self.Operaciya" />
+          <EntitySet Name="Sotrudnik" EntityType="Self.Sotrudnik" />
+          <EntitySet Name="Stata" EntityType="Self.Stata" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_Cenaes_Fuels" Association="Self.FK_Cenaes_Fuels">
+            <End Role="Fuel" EntitySet="Fuel" />
+            <End Role="Cena" EntitySet="Cena" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fuels_Emkosties" Association="Self.FK_Fuels_Emkosties">
+            <End Role="Emkost" EntitySet="Emkost" />
+            <End Role="Fuel" EntitySet="Fuel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Operaciies_Emkosties" Association="Self.FK_Operaciies_Emkosties">
+            <End Role="Emkost" EntitySet="Emkost" />
+            <End Role="Operaciya" EntitySet="Operaciya" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Operaciies_Fuels" Association="Self.FK_Operaciies_Fuels">
+            <End Role="Fuel" EntitySet="Fuel" />
+            <End Role="Operaciya" EntitySet="Operaciya" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Statyes_Fuels" Association="Self.FK_Statyes_Fuels">
+            <End Role="Fuel" EntitySet="Fuel" />
+            <End Role="Stata" EntitySet="Stata" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Operaciya_Sotrudnik" Association="Self.FK_Operaciya_Sotrudnik">
+            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
+            <End Role="Operaciya" EntitySet="Operaciya" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище azsModelContainer" CdmEntityContainer="azsEntities">
+          <EntitySetMapping Name="Cena">
+            <EntityTypeMapping TypeName="azsModel.Cena">
+              <MappingFragment StoreEntitySet="Cena">
+                <ScalarProperty Name="CenaID" ColumnName="CenaID" />
+                <ScalarProperty Name="FuelID" ColumnName="FuelID" />
+                <ScalarProperty Name="Cena1" ColumnName="Cena" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Emkost">
+            <EntityTypeMapping TypeName="azsModel.Emkost">
+              <MappingFragment StoreEntitySet="Emkost">
+                <ScalarProperty Name="EmkostiID" ColumnName="EmkostiID" />
+                <ScalarProperty Name="Obyem" ColumnName="Obyem" />
+                <ScalarProperty Name="FuelID" ColumnName="FuelID" />
+                <ScalarProperty Name="OperaciiID" ColumnName="OperaciiID" />
+                <ScalarProperty Name="SotrudnikID" ColumnName="SotrudnikID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fuel">
+            <EntityTypeMapping TypeName="azsModel.Fuel">
+              <MappingFragment StoreEntitySet="Fuel">
+                <ScalarProperty Name="FuelID" ColumnName="FuelID" />
+                <ScalarProperty Name="FuelType" ColumnName="FuelType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Operaciya">
+            <EntityTypeMapping TypeName="azsModel.Operaciya">
+              <MappingFragment StoreEntitySet="Operaciya">
+                <ScalarProperty Name="OperaciiID" ColumnName="OperaciiID" />
+                <ScalarProperty Name="Litr" ColumnName="Litr" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="EmkostiID" ColumnName="EmkostiID" />
+                <ScalarProperty Name="FuelID" ColumnName="FuelID" />
+                <ScalarProperty Name="SotrudnikID" ColumnName="SotrudnikID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sotrudnik">
+            <EntityTypeMapping TypeName="azsModel.Sotrudnik">
+              <MappingFragment StoreEntitySet="Sotrudnik">
+                <ScalarProperty Name="SotrudnikID" ColumnName="SotrudnikID" />
+                <ScalarProperty Name="Familia" ColumnName="Familia" />
+                <ScalarProperty Name="Doljnost" ColumnName="Doljnost" />
+                <ScalarProperty Name="OperaciiID" ColumnName="OperaciiID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stata">
+            <EntityTypeMapping TypeName="azsModel.Stata">
+              <MappingFragment StoreEntitySet="Stata">
+                <ScalarProperty Name="StataID" ColumnName="StataID" />
+                <ScalarProperty Name="Plotnost" ColumnName="Plotnost" />
+                <ScalarProperty Name="Oktan" ColumnName="Oktan" />
+                <ScalarProperty Name="Cvet" ColumnName="Cvet" />
+                <ScalarProperty Name="FuelID" ColumnName="FuelID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="azsModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
