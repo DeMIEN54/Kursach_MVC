@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Kurs_project
+namespace Kurs_project.Models
 {
     using System;
     using System.Data.Entity;
@@ -25,12 +25,11 @@ namespace Kurs_project
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Cena> Cena { get; set; }
         public virtual DbSet<Emkost> Emkost { get; set; }
         public virtual DbSet<Fuel> Fuel { get; set; }
         public virtual DbSet<Operaciya> Operaciya { get; set; }
+        public virtual DbSet<Otdel_kadrov> Otdel_kadrov { get; set; }
         public virtual DbSet<Sotrudnik> Sotrudnik { get; set; }
-        public virtual DbSet<Stata> Stata { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

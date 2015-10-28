@@ -1,0 +1,54 @@
+﻿@model Kurs_project.Models.Fuel
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+<h3>Вы действительно хотите удалить запись?</h3>
+<div>
+    <h4>@ViewBag.Title</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FuelType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FuelType)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Oktan)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Oktan)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cena)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cena)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Data)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Data)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.About)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.About)
+        </dd>
+    </dl>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Удалить" class="btn btn-default" /> |
+            @Html.ActionLink("Вернуться к общему списку", "Index")
+        </div>
+    }
+</div>
+

@@ -1,0 +1,51 @@
+﻿@model Kurs_project.Models.Emkost
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Emkost</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nomer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nomer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Obyem)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Obyem)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.About)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.About)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fuel.FuelType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fuel.FuelType)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EmkostID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

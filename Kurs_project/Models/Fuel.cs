@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Kurs_project
+namespace Kurs_project.Models
 {
     using System;
     using System.Collections.Generic;
@@ -17,20 +17,17 @@ namespace Kurs_project
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Fuel()
         {
-            this.Cena = new HashSet<Cena>();
-            this.Operaciya = new HashSet<Operaciya>();
-            this.Stata = new HashSet<Stata>();
+            this.Emkost = new HashSet<Emkost>();
         }
     
         public int FuelID { get; set; }
         public string FuelType { get; set; }
+        public int Oktan { get; set; }
+        public decimal Cena { get; set; }
+        public System.DateTime Data { get; set; }
+        public string About { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Cena> Cena { get; set; }
-        public virtual Emkost Emkost { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Operaciya> Operaciya { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Stata> Stata { get; set; }
+        public virtual ICollection<Emkost> Emkost { get; set; }
     }
 }

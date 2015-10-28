@@ -7,27 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Kurs_project
+namespace Kurs_project.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Emkost
+    public partial class Otdel_kadrov
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Emkost()
+        public Otdel_kadrov()
         {
             this.Operaciya = new HashSet<Operaciya>();
+            this.Sotrudnik = new HashSet<Sotrudnik>();
         }
     
-        public int EmkostiID { get; set; }
-        public Nullable<double> Obyem { get; set; }
-        public Nullable<int> FuelID { get; set; }
-        public Nullable<int> OperaciiID { get; set; }
-        public Nullable<int> SotrudnikID { get; set; }
+        public int Otdel_kadrovID { get; set; }
+        public string About { get; set; }
     
-        public virtual Fuel Fuel { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Operaciya> Operaciya { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Sotrudnik> Sotrudnik { get; set; }
     }
 }
