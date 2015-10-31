@@ -28,7 +28,6 @@ namespace Kurs_project.Models
         public virtual DbSet<Emkost> Emkost { get; set; }
         public virtual DbSet<Fuel> Fuel { get; set; }
         public virtual DbSet<Operaciya> Operaciya { get; set; }
-        public virtual DbSet<Otdel_kadrov> Otdel_kadrov { get; set; }
         public virtual DbSet<Sotrudnik> Sotrudnik { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }

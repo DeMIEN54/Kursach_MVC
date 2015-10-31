@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace Kurs_project.Models
 {
     using System;
@@ -14,16 +16,17 @@ namespace Kurs_project.Models
     
     public partial class Operaciya
     {
-        public int OperaciyaID { get; set; }
+        public int OperaciyaID { get; set; } 
+        [Display(Name = "Приход/расход")]      
         public double Prih_rash { get; set; }
         public System.DateTime Data_prih_rash { get; set; }
         public int EmkostID { get; set; }
         public int SotrudnikID { get; set; }
-        public int Otdel_kadrovID { get; set; }
         public string About { get; set; }
+        public int FuelID { get; set; }
     
         public virtual Emkost Emkost { get; set; }
-        public virtual Otdel_kadrov Otdel_kadrov { get; set; }
+        public virtual Fuel Fuel { get; set; }
         public virtual Sotrudnik Sotrudnik { get; set; }
     }
 }

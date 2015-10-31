@@ -27,11 +27,9 @@ namespace Kurs_project.Models
         public string Dolgnost { get; set; }
         public Nullable<System.DateTime> Data_nach_rab { get; set; }
         public Nullable<System.DateTime> Data_okon_rab { get; set; }
-        public int Otdel_kadrovID { get; set; }
         public string About { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Operaciya> Operaciya { get; set; }
-        public virtual Otdel_kadrov Otdel_kadrov { get; set; }
     }
 }

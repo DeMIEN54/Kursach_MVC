@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Kurs_project.Models.Sotrudnik>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Family)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Otchestvo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Dolgnost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Data_nach_rab)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Data_okon_rab)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.About)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Family)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Otchestvo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dolgnost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data_nach_rab)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data_okon_rab)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.About)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SotrudnikID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SotrudnikID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SotrudnikID })
+        </td>
+    </tr>
+}
+
+</table>

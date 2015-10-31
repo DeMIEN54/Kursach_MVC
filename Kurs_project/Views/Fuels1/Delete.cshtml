@@ -1,46 +1,65 @@
 ﻿@model Kurs_project.Models.Fuel
+
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Delete";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
 <div>
+    <h4>Fuel</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.FuelType)
         </dt>
+
         <dd>
             @Html.DisplayFor(model => model.FuelType)
         </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Oktan)
         </dt>
+
         <dd>
             @Html.DisplayFor(model => model.Oktan)
         </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Cena)
         </dt>
+
         <dd>
             @Html.DisplayFor(model => model.Cena)
         </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.Data)
         </dt>
+
         <dd>
             @Html.DisplayFor(model => model.Data)
         </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.About)
         </dt>
+
         <dd>
             @Html.DisplayFor(model => model.About)
         </dd>
+
     </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
 </div>
-<p>
-    @Html.ActionLink("Редактировать", "Edit", new { id = Model.FuelID }) |
-    @Html.ActionLink("Вернуться к общему списку", "Index")
-</p>

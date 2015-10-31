@@ -1,0 +1,67 @@
+﻿@model Kurs_project.Models.Operaciya
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Operaciya</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Prih_rash)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prih_rash)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Data_prih_rash)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data_prih_rash)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.About)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.About)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Emkost.Nomer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Emkost.Nomer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Fuel.FuelType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fuel.FuelType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sotrudnik.Family)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sotrudnik.Family)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OperaciyaID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

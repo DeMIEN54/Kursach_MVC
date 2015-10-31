@@ -1,0 +1,75 @@
+﻿@model Kurs_project.Models.Sotrudnik
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Sotrudnik</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Family)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Family)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Otchestvo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Otchestvo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dolgnost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Dolgnost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Data_nach_rab)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data_nach_rab)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Data_okon_rab)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data_okon_rab)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.About)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.About)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SotrudnikID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

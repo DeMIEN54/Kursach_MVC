@@ -1,30 +1,26 @@
-﻿using System.Net;
+﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Kurs_project.Models;
-using System.Data.Entity;
 
 namespace Kurs_project.Controllers
 {
-    public class FuelsController : Controller
+    public class Fuels1Controller : Controller
     {
-        private  azsEntities db=new azsEntities();
-        // GET: Fuels
-        public ActionResult Index(string FuelFind="")
+        private azsEntities db = new azsEntities();
+
+        // GET: Fuels1
+        public ActionResult Index()
         {
-            var fuel = from m in db.Fuel
-                where m.FuelType.StartsWith(FuelFind)
-                select m;
-            
-            
-            
-            return View(fuel.ToList());
+            return View(db.Fuel.ToList());
         }
 
-        // GET: Fuels/Details/5
+        // GET: Fuels1/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -39,36 +35,30 @@ namespace Kurs_project.Controllers
             return View(fuel);
         }
 
-        // GET: Fuels/Create
+        // GET: Fuels1/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Fuels/Create
+        // POST: Fuels1/Create
+        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
+        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "FuelID,FuelType,Oktan,Cena,Data,About")] Fuel fuel)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
-                if (ModelState.IsValid)
-                {
-                    db.Fuel.Add(fuel);
-                    db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
+                db.Fuel.Add(fuel);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
 
-                return View(fuel);
-            }
-            catch
-            {
-                return View();
-            }
+            return View(fuel);
         }
 
-        // GET: Fuels/Edit/5
+        // GET: Fuels1/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -83,13 +73,13 @@ namespace Kurs_project.Controllers
             return View(fuel);
         }
 
-        // POST: Fuels/Edit/5
+        // POST: Fuels1/Edit/5
+        // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
+        // сведения см. в статье http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "FuelID,FuelType,Oktan,Cena,Data,About")] Fuel fuel)
         {
-            ViewBag.Title = "Гсм";
-
             if (ModelState.IsValid)
             {
                 db.Entry(fuel).State = EntityState.Modified;
@@ -97,15 +87,14 @@ namespace Kurs_project.Controllers
                 return RedirectToAction("Index");
             }
             return View(fuel);
-      
         }
 
-        // GET: Fuels/Delete/5
+        // GET: Fuels1/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
-                return  new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Fuel fuel = db.Fuel.Find(id);
             if (fuel == null)
@@ -115,17 +104,16 @@ namespace Kurs_project.Controllers
             return View(fuel);
         }
 
-        // POST: Fuels/Delete/5
-        [HttpPost,ActionName("Delete")]
+        // POST: Fuels1/Delete/5
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-                          
-                Fuel fuel = db.Fuel.Find(id);
-                db.Fuel.Remove(fuel);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+            Fuel fuel = db.Fuel.Find(id);
+            db.Fuel.Remove(fuel);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
         protected override void Dispose(bool disposing)
         {
@@ -135,8 +123,5 @@ namespace Kurs_project.Controllers
             }
             base.Dispose(disposing);
         }
-
-
-        }
     }
-
+}

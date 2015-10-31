@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Kurs_project.Models.Operaciya>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Prih_rash)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Data_prih_rash)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.About)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Emkost.Nomer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fuel.FuelType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sotrudnik.Family)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Prih_rash)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Data_prih_rash)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.About)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Emkost.Nomer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fuel.FuelType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sotrudnik.Family)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.OperaciyaID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.OperaciyaID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.OperaciyaID })
+        </td>
+    </tr>
+}
+
+</table>

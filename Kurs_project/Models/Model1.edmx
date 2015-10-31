@@ -35,15 +35,8 @@
           <Property Name="Data_prih_rash" Type="datetime" Nullable="false" />
           <Property Name="EmkostID" Type="int" Nullable="false" />
           <Property Name="SotrudnikID" Type="int" Nullable="false" />
-          <Property Name="Otdel_kadrovID" Type="int" Nullable="false" />
           <Property Name="About" Type="nvarchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="Otdel_kadrov">
-          <Key>
-            <PropertyRef Name="Otdel_kadrovID" />
-          </Key>
-          <Property Name="Otdel_kadrovID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="About" Type="nvarchar" MaxLength="50" />
+          <Property Name="FuelID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Sotrudnik">
           <Key>
@@ -56,7 +49,6 @@
           <Property Name="Dolgnost" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Data_nach_rab" Type="datetime" />
           <Property Name="Data_okon_rab" Type="datetime" />
-          <Property Name="Otdel_kadrovID" Type="int" Nullable="false" />
           <Property Name="About" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -93,15 +85,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Operaciya_Otdel_kadrov">
-          <End Role="Otdel_kadrov" Type="Self.Otdel_kadrov" Multiplicity="1" />
+        <Association Name="FK_Operaciya_Fuel">
+          <End Role="Fuel" Type="Self.Fuel" Multiplicity="1" />
           <End Role="Operaciya" Type="Self.Operaciya" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Otdel_kadrov">
-              <PropertyRef Name="Otdel_kadrovID" />
+            <Principal Role="Fuel">
+              <PropertyRef Name="FuelID" />
             </Principal>
             <Dependent Role="Operaciya">
-              <PropertyRef Name="Otdel_kadrovID" />
+              <PropertyRef Name="FuelID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -117,23 +109,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Sotrudnik_Otdel_kadrov">
-          <End Role="Otdel_kadrov" Type="Self.Otdel_kadrov" Multiplicity="1" />
-          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Otdel_kadrov">
-              <PropertyRef Name="Otdel_kadrovID" />
-            </Principal>
-            <Dependent Role="Sotrudnik">
-              <PropertyRef Name="Otdel_kadrovID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="Хранилище azsModelContainer">
           <EntitySet Name="Emkost" EntityType="Self.Emkost" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Fuel" EntityType="Self.Fuel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Operaciya" EntityType="Self.Operaciya" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Otdel_kadrov" EntityType="Self.Otdel_kadrov" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sotrudnik" EntityType="Self.Sotrudnik" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Emkost_Fuel" Association="Self.FK_Emkost_Fuel">
@@ -144,17 +123,13 @@
             <End Role="Emkost" EntitySet="Emkost" />
             <End Role="Operaciya" EntitySet="Operaciya" />
           </AssociationSet>
-          <AssociationSet Name="FK_Operaciya_Otdel_kadrov" Association="Self.FK_Operaciya_Otdel_kadrov">
-            <End Role="Otdel_kadrov" EntitySet="Otdel_kadrov" />
+          <AssociationSet Name="FK_Operaciya_Fuel" Association="Self.FK_Operaciya_Fuel">
+            <End Role="Fuel" EntitySet="Fuel" />
             <End Role="Operaciya" EntitySet="Operaciya" />
           </AssociationSet>
           <AssociationSet Name="FK_Operaciya_Sotrudnik" Association="Self.FK_Operaciya_Sotrudnik">
             <End Role="Sotrudnik" EntitySet="Sotrudnik" />
             <End Role="Operaciya" EntitySet="Operaciya" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Sotrudnik_Otdel_kadrov" Association="Self.FK_Sotrudnik_Otdel_kadrov">
-            <End Role="Otdel_kadrov" EntitySet="Otdel_kadrov" />
-            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -185,6 +160,7 @@
           <Property Name="Data" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="About" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Emkost" Relationship="Self.FK_Emkost_Fuel" FromRole="Fuel" ToRole="Emkost" />
+          <NavigationProperty Name="Operaciya" Relationship="Self.FK_Operaciya_Fuel" FromRole="Fuel" ToRole="Operaciya" />
         </EntityType>
         <EntityType Name="Operaciya">
           <Key>
@@ -195,20 +171,11 @@
           <Property Name="Data_prih_rash" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EmkostID" Type="Int32" Nullable="false" />
           <Property Name="SotrudnikID" Type="Int32" Nullable="false" />
-          <Property Name="Otdel_kadrovID" Type="Int32" Nullable="false" />
           <Property Name="About" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FuelID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Emkost" Relationship="Self.FK_Operaciya_Emkost" FromRole="Operaciya" ToRole="Emkost" />
-          <NavigationProperty Name="Otdel_kadrov" Relationship="Self.FK_Operaciya_Otdel_kadrov" FromRole="Operaciya" ToRole="Otdel_kadrov" />
+          <NavigationProperty Name="Fuel" Relationship="Self.FK_Operaciya_Fuel" FromRole="Operaciya" ToRole="Fuel" />
           <NavigationProperty Name="Sotrudnik" Relationship="Self.FK_Operaciya_Sotrudnik" FromRole="Operaciya" ToRole="Sotrudnik" />
-        </EntityType>
-        <EntityType Name="Otdel_kadrov">
-          <Key>
-            <PropertyRef Name="Otdel_kadrovID" />
-          </Key>
-          <Property Name="Otdel_kadrovID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="About" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Operaciya" Relationship="Self.FK_Operaciya_Otdel_kadrov" FromRole="Otdel_kadrov" ToRole="Operaciya" />
-          <NavigationProperty Name="Sotrudnik" Relationship="Self.FK_Sotrudnik_Otdel_kadrov" FromRole="Otdel_kadrov" ToRole="Sotrudnik" />
         </EntityType>
         <EntityType Name="Sotrudnik">
           <Key>
@@ -221,10 +188,8 @@
           <Property Name="Dolgnost" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Data_nach_rab" Type="DateTime" Precision="3" />
           <Property Name="Data_okon_rab" Type="DateTime" Precision="3" />
-          <Property Name="Otdel_kadrovID" Type="Int32" Nullable="false" />
           <Property Name="About" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Operaciya" Relationship="Self.FK_Operaciya_Sotrudnik" FromRole="Sotrudnik" ToRole="Operaciya" />
-          <NavigationProperty Name="Otdel_kadrov" Relationship="Self.FK_Sotrudnik_Otdel_kadrov" FromRole="Sotrudnik" ToRole="Otdel_kadrov" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -260,15 +225,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Operaciya_Otdel_kadrov">
-          <End Role="Otdel_kadrov" Type="Self.Otdel_kadrov" Multiplicity="1" />
+        <Association Name="FK_Operaciya_Fuel">
+          <End Role="Fuel" Type="Self.Fuel" Multiplicity="1" />
           <End Role="Operaciya" Type="Self.Operaciya" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Otdel_kadrov">
-              <PropertyRef Name="Otdel_kadrovID" />
+            <Principal Role="Fuel">
+              <PropertyRef Name="FuelID" />
             </Principal>
             <Dependent Role="Operaciya">
-              <PropertyRef Name="Otdel_kadrovID" />
+              <PropertyRef Name="FuelID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -284,23 +249,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Sotrudnik_Otdel_kadrov">
-          <End Role="Otdel_kadrov" Type="Self.Otdel_kadrov" Multiplicity="1" />
-          <End Role="Sotrudnik" Type="Self.Sotrudnik" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Otdel_kadrov">
-              <PropertyRef Name="Otdel_kadrovID" />
-            </Principal>
-            <Dependent Role="Sotrudnik">
-              <PropertyRef Name="Otdel_kadrovID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="azsEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Emkost" EntityType="Self.Emkost" />
           <EntitySet Name="Fuel" EntityType="Self.Fuel" />
           <EntitySet Name="Operaciya" EntityType="Self.Operaciya" />
-          <EntitySet Name="Otdel_kadrov" EntityType="Self.Otdel_kadrov" />
           <EntitySet Name="Sotrudnik" EntityType="Self.Sotrudnik" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <AssociationSet Name="FK_Emkost_Fuel" Association="Self.FK_Emkost_Fuel">
@@ -311,17 +263,13 @@
             <End Role="Emkost" EntitySet="Emkost" />
             <End Role="Operaciya" EntitySet="Operaciya" />
           </AssociationSet>
-          <AssociationSet Name="FK_Operaciya_Otdel_kadrov" Association="Self.FK_Operaciya_Otdel_kadrov">
-            <End Role="Otdel_kadrov" EntitySet="Otdel_kadrov" />
+          <AssociationSet Name="FK_Operaciya_Fuel" Association="Self.FK_Operaciya_Fuel">
+            <End Role="Fuel" EntitySet="Fuel" />
             <End Role="Operaciya" EntitySet="Operaciya" />
           </AssociationSet>
           <AssociationSet Name="FK_Operaciya_Sotrudnik" Association="Self.FK_Operaciya_Sotrudnik">
             <End Role="Sotrudnik" EntitySet="Sotrudnik" />
             <End Role="Operaciya" EntitySet="Operaciya" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Sotrudnik_Otdel_kadrov" Association="Self.FK_Sotrudnik_Otdel_kadrov">
-            <End Role="Otdel_kadrov" EntitySet="Otdel_kadrov" />
-            <End Role="Sotrudnik" EntitySet="Sotrudnik" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -361,16 +309,8 @@
                 <ScalarProperty Name="Data_prih_rash" ColumnName="Data_prih_rash" />
                 <ScalarProperty Name="EmkostID" ColumnName="EmkostID" />
                 <ScalarProperty Name="SotrudnikID" ColumnName="SotrudnikID" />
-                <ScalarProperty Name="Otdel_kadrovID" ColumnName="Otdel_kadrovID" />
                 <ScalarProperty Name="About" ColumnName="About" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Otdel_kadrov">
-            <EntityTypeMapping TypeName="azsModel.Otdel_kadrov">
-              <MappingFragment StoreEntitySet="Otdel_kadrov">
-                <ScalarProperty Name="Otdel_kadrovID" ColumnName="Otdel_kadrovID" />
-                <ScalarProperty Name="About" ColumnName="About" />
+                <ScalarProperty Name="FuelID" ColumnName="FuelID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -384,7 +324,6 @@
                 <ScalarProperty Name="Dolgnost" ColumnName="Dolgnost" />
                 <ScalarProperty Name="Data_nach_rab" ColumnName="Data_nach_rab" />
                 <ScalarProperty Name="Data_okon_rab" ColumnName="Data_okon_rab" />
-                <ScalarProperty Name="Otdel_kadrovID" ColumnName="Otdel_kadrovID" />
                 <ScalarProperty Name="About" ColumnName="About" />
               </MappingFragment>
             </EntityTypeMapping>

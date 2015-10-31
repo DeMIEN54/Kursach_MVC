@@ -15,8 +15,7 @@ namespace Kurs_project.Controllers
             
         {
 
-            ViewBag.DataFuel = Db.Fuel.ToList();
-            
+           
             return View();
         }
 

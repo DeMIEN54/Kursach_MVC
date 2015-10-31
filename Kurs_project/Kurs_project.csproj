@@ -168,7 +168,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\EmkostsController.cs" />
-    <Compile Include="Controllers\FuelsController.cs" />
+    <Compile Include="Controllers\Fuels1Controller.cs" />
+    <Compile Include="Controllers\OperaciyasController.cs" />
+    <Compile Include="Controllers\SotrudniksController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -196,9 +198,6 @@
     <Compile Include="Models\Operaciya.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Otdel_kadrov.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Sotrudnik.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -216,16 +215,26 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Default\Index.cshtml" />
-    <Content Include="Views\Fuels\Index.cshtml" />
-    <Content Include="Views\Fuels\Create.cshtml" />
-    <Content Include="Views\Fuels\Delete.cshtml" />
-    <Content Include="Views\Fuels\Details.cshtml" />
-    <Content Include="Views\Fuels\Edit.cshtml" />
     <Content Include="Views\Emkosts\Create.cshtml" />
     <Content Include="Views\Emkosts\Delete.cshtml" />
     <Content Include="Views\Emkosts\Details.cshtml" />
     <Content Include="Views\Emkosts\Edit.cshtml" />
     <Content Include="Views\Emkosts\Index.cshtml" />
+    <Content Include="Views\Fuels1\Create.cshtml" />
+    <Content Include="Views\Fuels1\Delete.cshtml" />
+    <Content Include="Views\Fuels1\Details.cshtml" />
+    <Content Include="Views\Fuels1\Edit.cshtml" />
+    <Content Include="Views\Fuels1\Index.cshtml" />
+    <Content Include="Views\Sotrudniks\Create.cshtml" />
+    <Content Include="Views\Sotrudniks\Delete.cshtml" />
+    <Content Include="Views\Sotrudniks\Details.cshtml" />
+    <Content Include="Views\Sotrudniks\Edit.cshtml" />
+    <Content Include="Views\Sotrudniks\Index.cshtml" />
+    <Content Include="Views\Operaciyas\Create.cshtml" />
+    <Content Include="Views\Operaciyas\Delete.cshtml" />
+    <Content Include="Views\Operaciyas\Details.cshtml" />
+    <Content Include="Views\Operaciyas\Edit.cshtml" />
+    <Content Include="Views\Operaciyas\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -235,6 +244,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Vybor\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

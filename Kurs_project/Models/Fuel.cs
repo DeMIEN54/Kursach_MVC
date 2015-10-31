@@ -18,6 +18,7 @@ namespace Kurs_project.Models
         public Fuel()
         {
             this.Emkost = new HashSet<Emkost>();
+            this.Operaciya = new HashSet<Operaciya>();
         }
     
         public int FuelID { get; set; }
@@ -29,5 +30,7 @@ namespace Kurs_project.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Emkost> Emkost { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Operaciya> Operaciya { get; set; }
     }
 }
