@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.DynamicData;
 using System.Web.Mvc;
 using Kurs_project.Models;
 
@@ -15,11 +16,24 @@ namespace Kurs_project.Controllers
         private azsEntities db = new azsEntities();
 
         // GET: Operaciyas
+       
         public ActionResult Index()
         {
             var operaciya = db.Operaciya.Include(o => o.Emkost).Include(o => o.Fuel).Include(o => o.Sotrudnik);
             return View(operaciya.ToList());
         }
+       
+      /*  public ActionResult Index(string SotrudnikFind="")
+        {
+
+            
+            var tanks = from m in db.Operaciya 
+                        where m.About.StartsWith(SotrudnikFind)//!
+                        select m;
+                          
+            return View(tanks.ToList());           
+        }
+        */
 
         // GET: Operaciyas/Details/5
         public ActionResult Details(int? id)

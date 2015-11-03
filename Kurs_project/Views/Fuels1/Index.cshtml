@@ -5,11 +5,24 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Типы гсм</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Новый", "Create")
 </p>
+@using (Html.BeginForm("Index", "Fuels1", FormMethod.Get))
+{
+
+
+
+    <fieldset>
+        Тип Гсм: @Html.TextBox("TankTypeFind", "")
+
+        <input type="submit" value="Найти" />
+    </fieldset>
+
+
+}
 <table class="table">
     <tr>
         <th>
@@ -48,9 +61,9 @@
             @Html.DisplayFor(modelItem => item.About)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.FuelID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.FuelID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.FuelID })
+            @Html.ActionLink("Изменить", "Edit", new { id=item.FuelID }) |
+            @Html.ActionLink("Подробнее", "Details", new { id=item.FuelID }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.FuelID })
         </td>
     </tr>
 }

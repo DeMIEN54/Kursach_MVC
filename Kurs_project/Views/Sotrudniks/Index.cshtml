@@ -10,6 +10,24 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+@using (Html.BeginForm("Index", "Sotrudniks", FormMethod.Get))
+{
+
+
+
+    <fieldset>
+        Фамилия сотрудника: @Html.TextBox("SotrudnikFind", "")
+
+        <input type="submit" value="Найти" />
+    </fieldset>
+
+
+}
+<form action="@Url.Action("Sort", "Sotrudniks")" method="POST">
+    <input type="text" value="25.01.1984" name="begining"/>
+    <input type="text" value="25.01.3190" name="ending"/>
+    <input type="submit"  name="OK" value="Выбрать"/>
+</form>
 <table class="table">
     <tr>
         <th>

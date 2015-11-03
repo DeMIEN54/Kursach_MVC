@@ -204,6 +204,9 @@
     <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\View_AllOperacions.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -235,6 +238,7 @@
     <Content Include="Views\Operaciyas\Details.cshtml" />
     <Content Include="Views\Operaciyas\Edit.cshtml" />
     <Content Include="Views\Operaciyas\Index.cshtml" />
+    <Content Include="Views\Sotrudniks\Sort.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

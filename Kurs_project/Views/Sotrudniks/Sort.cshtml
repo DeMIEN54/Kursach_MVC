@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Sort";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Sort</h2>
+<table class="table table-bordered table-hover">
+    <tr>
+        <th>Номер операции</th>
+        <th>Приход/расход</th>
+        <th>Дата операции</th>
+        <th>Имя сотрудника</th>
+        <th>Фамилия</th>        
+        <th></th>       
+    </tr>
+                    @foreach (var o in ViewBag.time)
+                    {
+                        <tr>
+
+                            <td>
+                                @o.OperaciyaID
+                            </td>
+                            <td>
+                                @o.Prih_rash
+                            </td>
+                            <td>
+                                @o.Data_prih_rash
+                            </td>
+                            <td>
+                                @o.Sotrudnik.Name
+                            </td>
+                            <td>
+                                @o.Sotrudnik.Family
+                            </td>
+                            
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id =o.OperaciyaID }) |
+                                @Html.ActionLink("Details", "Details", new { id = o.OperaciyaID }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = o.OperaciyaID })
+                            </td>
+                            
+                        </tr>
+                    }
+</table>

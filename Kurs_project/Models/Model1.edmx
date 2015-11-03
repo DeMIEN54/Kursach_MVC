@@ -61,6 +61,54 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "azs.dbo.View_AllOperacions" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="View_AllOperacions">
+          <Key>
+            <PropertyRef Name="Expr1" />
+            <PropertyRef Name="Expr2" />
+            <PropertyRef Name="Expr9" />
+            <PropertyRef Name="Expr3" />
+            <PropertyRef Name="Expr4" />
+            <PropertyRef Name="Expr5" />
+            <PropertyRef Name="Expr6" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Family" />
+            <PropertyRef Name="Otchestvo" />
+            <PropertyRef Name="OperaciyaID" />
+            <PropertyRef Name="EmkostID" />
+            <PropertyRef Name="Nomer" />
+            <PropertyRef Name="Obyem" />
+            <PropertyRef Name="Expr7" />
+            <PropertyRef Name="FuelID" />
+            <PropertyRef Name="FuelType" />
+            <PropertyRef Name="Oktan" />
+            <PropertyRef Name="Cena" />
+            <PropertyRef Name="Data" />
+          </Key>
+          <Property Name="Expr1" Type="datetime" Nullable="false" />
+          <Property Name="Expr2" Type="float" Nullable="false" />
+          <Property Name="Expr9" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Expr10" Type="datetime" />
+          <Property Name="Expr11" Type="datetime" />
+          <Property Name="Expr3" Type="int" Nullable="false" />
+          <Property Name="Expr4" Type="int" Nullable="false" />
+          <Property Name="Expr5" Type="int" Nullable="false" />
+          <Property Name="Expr6" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Family" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Otchestvo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="OperaciyaID" Type="int" Nullable="false" />
+          <Property Name="EmkostID" Type="int" Nullable="false" />
+          <Property Name="Nomer" Type="int" Nullable="false" />
+          <Property Name="Obyem" Type="float" Nullable="false" />
+          <Property Name="Expr7" Type="int" Nullable="false" />
+          <Property Name="FuelID" Type="int" Nullable="false" />
+          <Property Name="FuelType" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Oktan" Type="int" Nullable="false" />
+          <Property Name="Cena" Type="money" Nullable="false" />
+          <Property Name="Data" Type="datetime" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Emkost_Fuel">
           <End Role="Fuel" Type="Self.Fuel" Multiplicity="1" />
           <End Role="Emkost" Type="Self.Emkost" Multiplicity="*" />
@@ -115,6 +163,32 @@
           <EntitySet Name="Operaciya" EntityType="Self.Operaciya" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sotrudnik" EntityType="Self.Sotrudnik" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="View_AllOperacions" EntityType="Self.View_AllOperacions" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [View_AllOperacions].[Expr1] AS [Expr1], 
+    [View_AllOperacions].[Expr2] AS [Expr2], 
+    [View_AllOperacions].[Expr9] AS [Expr9], 
+    [View_AllOperacions].[Expr10] AS [Expr10], 
+    [View_AllOperacions].[Expr11] AS [Expr11], 
+    [View_AllOperacions].[Expr3] AS [Expr3], 
+    [View_AllOperacions].[Expr4] AS [Expr4], 
+    [View_AllOperacions].[Expr5] AS [Expr5], 
+    [View_AllOperacions].[Expr6] AS [Expr6], 
+    [View_AllOperacions].[Name] AS [Name], 
+    [View_AllOperacions].[Family] AS [Family], 
+    [View_AllOperacions].[Otchestvo] AS [Otchestvo], 
+    [View_AllOperacions].[OperaciyaID] AS [OperaciyaID], 
+    [View_AllOperacions].[EmkostID] AS [EmkostID], 
+    [View_AllOperacions].[Nomer] AS [Nomer], 
+    [View_AllOperacions].[Obyem] AS [Obyem], 
+    [View_AllOperacions].[Expr7] AS [Expr7], 
+    [View_AllOperacions].[FuelID] AS [FuelID], 
+    [View_AllOperacions].[FuelType] AS [FuelType], 
+    [View_AllOperacions].[Oktan] AS [Oktan], 
+    [View_AllOperacions].[Cena] AS [Cena], 
+    [View_AllOperacions].[Data] AS [Data]
+    FROM [dbo].[View_AllOperacions] AS [View_AllOperacions]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Emkost_Fuel" Association="Self.FK_Emkost_Fuel">
             <End Role="Fuel" EntitySet="Fuel" />
             <End Role="Emkost" EntitySet="Emkost" />
@@ -201,6 +275,52 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="View_AllOperacions">
+          <Key>
+            <PropertyRef Name="Expr1" />
+            <PropertyRef Name="Expr2" />
+            <PropertyRef Name="Expr9" />
+            <PropertyRef Name="Expr3" />
+            <PropertyRef Name="Expr4" />
+            <PropertyRef Name="Expr5" />
+            <PropertyRef Name="Expr6" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Family" />
+            <PropertyRef Name="Otchestvo" />
+            <PropertyRef Name="OperaciyaID" />
+            <PropertyRef Name="EmkostID" />
+            <PropertyRef Name="Nomer" />
+            <PropertyRef Name="Obyem" />
+            <PropertyRef Name="Expr7" />
+            <PropertyRef Name="FuelID" />
+            <PropertyRef Name="FuelType" />
+            <PropertyRef Name="Oktan" />
+            <PropertyRef Name="Cena" />
+            <PropertyRef Name="Data" />
+          </Key>
+          <Property Name="Expr1" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Expr2" Type="Double" Nullable="false" />
+          <Property Name="Expr9" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Expr10" Type="DateTime" Precision="3" />
+          <Property Name="Expr11" Type="DateTime" Precision="3" />
+          <Property Name="Expr3" Type="Int32" Nullable="false" />
+          <Property Name="Expr4" Type="Int32" Nullable="false" />
+          <Property Name="Expr5" Type="Int32" Nullable="false" />
+          <Property Name="Expr6" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Family" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Otchestvo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OperaciyaID" Type="Int32" Nullable="false" />
+          <Property Name="EmkostID" Type="Int32" Nullable="false" />
+          <Property Name="Nomer" Type="Int32" Nullable="false" />
+          <Property Name="Obyem" Type="Double" Nullable="false" />
+          <Property Name="Expr7" Type="Int32" Nullable="false" />
+          <Property Name="FuelID" Type="Int32" Nullable="false" />
+          <Property Name="FuelType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Oktan" Type="Int32" Nullable="false" />
+          <Property Name="Cena" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Data" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
         <Association Name="FK_Emkost_Fuel">
           <End Role="Fuel" Type="Self.Fuel" Multiplicity="1" />
           <End Role="Emkost" Type="Self.Emkost" Multiplicity="*" />
@@ -255,6 +375,7 @@
           <EntitySet Name="Operaciya" EntityType="Self.Operaciya" />
           <EntitySet Name="Sotrudnik" EntityType="Self.Sotrudnik" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="View_AllOperacions" EntityType="Self.View_AllOperacions" />
           <AssociationSet Name="FK_Emkost_Fuel" Association="Self.FK_Emkost_Fuel">
             <End Role="Fuel" EntitySet="Fuel" />
             <End Role="Emkost" EntitySet="Emkost" />
@@ -336,6 +457,34 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="View_AllOperacions">
+            <EntityTypeMapping TypeName="azsModel.View_AllOperacions">
+              <MappingFragment StoreEntitySet="View_AllOperacions">
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+                <ScalarProperty Name="Expr2" ColumnName="Expr2" />
+                <ScalarProperty Name="Expr9" ColumnName="Expr9" />
+                <ScalarProperty Name="Expr10" ColumnName="Expr10" />
+                <ScalarProperty Name="Expr11" ColumnName="Expr11" />
+                <ScalarProperty Name="Expr3" ColumnName="Expr3" />
+                <ScalarProperty Name="Expr4" ColumnName="Expr4" />
+                <ScalarProperty Name="Expr5" ColumnName="Expr5" />
+                <ScalarProperty Name="Expr6" ColumnName="Expr6" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Family" ColumnName="Family" />
+                <ScalarProperty Name="Otchestvo" ColumnName="Otchestvo" />
+                <ScalarProperty Name="OperaciyaID" ColumnName="OperaciyaID" />
+                <ScalarProperty Name="EmkostID" ColumnName="EmkostID" />
+                <ScalarProperty Name="Nomer" ColumnName="Nomer" />
+                <ScalarProperty Name="Obyem" ColumnName="Obyem" />
+                <ScalarProperty Name="Expr7" ColumnName="Expr7" />
+                <ScalarProperty Name="FuelID" ColumnName="FuelID" />
+                <ScalarProperty Name="FuelType" ColumnName="FuelType" />
+                <ScalarProperty Name="Oktan" ColumnName="Oktan" />
+                <ScalarProperty Name="Cena" ColumnName="Cena" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

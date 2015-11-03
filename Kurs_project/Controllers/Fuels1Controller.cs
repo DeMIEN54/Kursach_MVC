@@ -15,11 +15,17 @@ namespace Kurs_project.Controllers
         private azsEntities db = new azsEntities();
 
         // GET: Fuels1
-        public ActionResult Index()
+        
+        public ActionResult Index(string TankTypeFind = "")
         {
-            return View(db.Fuel.ToList());
-        }
+            
 
+            var tanks = from m in db.Fuel
+                        where m.FuelType.StartsWith(TankTypeFind)
+                        select m;
+
+            return View(tanks.ToList());
+        }
         // GET: Fuels1/Details/5
         public ActionResult Details(int? id)
         {

@@ -11,13 +11,29 @@ using Kurs_project.Models;
 namespace Kurs_project.Controllers
 {
     public class SotrudniksController : Controller
-    {
+    { 
         private azsEntities db = new azsEntities();
+        
 
-        // GET: Sotrudniks
-        public ActionResult Index()
+        // GET: Sotrudniks  
+        [HttpPost]      
+        public ActionResult Sort(DateTime begining,DateTime ending)
         {
-            return View(db.Sotrudnik.ToList());
+
+            List<Operaciya> operdata =
+                db.Operaciya.Where(s => s.Data_prih_rash >= begining && s.Data_prih_rash <= ending).ToList();
+            ViewBag.time = operdata;
+            return View();
+        }
+        public ActionResult Index(string SotrudnikFind = "")
+        {
+
+
+            var tanks = from m in db.Sotrudnik
+                where m.Family.StartsWith(SotrudnikFind)
+                select m;
+
+            return View(tanks.ToList());
         }
 
         // GET: Sotrudniks/Details/5

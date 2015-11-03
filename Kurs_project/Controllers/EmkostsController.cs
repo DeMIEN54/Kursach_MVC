@@ -14,13 +14,17 @@ namespace Kurs_project.Controllers
     {
         private azsEntities db = new azsEntities();
 
-        // GET: Emkosts
-        public ActionResult Index()
+        // GET: Emkosts      
+        public ActionResult Index(string Nomer="")
         {
-            var emkost = db.Emkost.Include(e => e.Fuel);
-            return View(emkost.ToList());
-        }
 
+            
+            var tanks = from m in db.Emkost
+                        where (m.Nomer).ToString().StartsWith(Nomer) //Костыли
+                        select m;
+                          
+            return View(tanks.ToList());           
+        }
         // GET: Emkosts/Details/5
         public ActionResult Details(int? id)
         {

@@ -30,5 +30,6 @@ namespace Kurs_project.Models
         public virtual DbSet<Operaciya> Operaciya { get; set; }
         public virtual DbSet<Sotrudnik> Sotrudnik { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<View_AllOperacions> View_AllOperacions { get; set; }
     }
 }

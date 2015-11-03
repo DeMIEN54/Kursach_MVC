@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+
 namespace Kurs_project.Models
 {
     using System;
@@ -20,7 +22,7 @@ namespace Kurs_project.Models
             this.Operaciya = new HashSet<Operaciya>();
         }
     
-        public int EmkostID { get; set; }
+        public int EmkostID { get; set; }      
         public int Nomer { get; set; }
         public double Obyem { get; set; }
         public int FuelID { get; set; }

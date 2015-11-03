@@ -4,12 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9f79164db39445b8964b8d4629b40c81" Name="Diagram1">
-        <EntityTypeShape EntityType="azsModel.Emkost" Width="1.5" PointX="3" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="azsModel.Fuel" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
+      <Diagram DiagramId="69491c2f560641fd9e3835bcb86ef434" Name="Diagram1">
+        <EntityTypeShape EntityType="azsModel.Emkost" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="azsModel.Fuel" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="azsModel.Operaciya" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="azsModel.Sotrudnik" Width="1.5" PointX="2.5" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="azsModel.sysdiagrams" Width="1.5" PointX="7.375" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="azsModel.Sotrudnik" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="azsModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="azsModel.View_AllOperacions" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="azsModel.FK_Emkost_Fuel" ManuallyRouted="false" />
         <AssociationConnector Association="azsModel.FK_Operaciya_Emkost" ManuallyRouted="false" />
         <AssociationConnector Association="azsModel.FK_Operaciya_Fuel" ManuallyRouted="false" />
