@@ -6,12 +6,12 @@
 <h2>Sort</h2>
 <table class="table table-bordered table-hover">
     <tr>
-        <th>Номер операции</th>
-        <th>Приход/расход</th>
-        <th>Дата операции</th>
-        <th>Имя сотрудника</th>
-        <th>Фамилия</th>        
-        <th></th>       
+        <th><a>Номер операции</a></th>
+        <th><a>Приход/расход</a></th>
+        <th><a>Дата операции</a></th>
+        <th><a>Имя сотрудника</a></th>
+        <th><a>Фамилия</a></th>        
+        <th><a href="@Url.Action("Index","Sotrudniks")">Вернуться &raquo;</a></th>       
     </tr>
                     @foreach (var o in ViewBag.time)
                     {
@@ -34,9 +34,9 @@
                             </td>
                             
                             <td>
-                                @Html.ActionLink("Edit", "Edit", new { id =o.OperaciyaID }) |
-                                @Html.ActionLink("Details", "Details", new { id = o.OperaciyaID }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = o.OperaciyaID })
+                                @Html.ActionLink("Изменить", "Edit", new { id =o.OperaciyaID }) |
+                                @Html.ActionLink("Подробнее", "Details", new { id = o.OperaciyaID }) |
+                                @Html.ActionLink("Удалить", "Delete", new { id = o.OperaciyaID })
                             </td>
                             
                         </tr>

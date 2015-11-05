@@ -8,7 +8,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Создать", "Create")
 </p>
 @using (Html.BeginForm("Index", "Operaciyas", FormMethod.Get))
 {
@@ -16,9 +16,9 @@
 
 
     <fieldset>
-        Фамилия сотрудника: @Html.TextBox("SotrudnikFind", "")
+        <a class="btn btn-success ">Фамилия сотрудника:</a> @Html.TextBox("SotrudnikFind", "")
 
-        <input type="submit" value="Найти" />
+        <input type="submit" value="Найти" class="btn btn-success " />
     </fieldset>
 
 

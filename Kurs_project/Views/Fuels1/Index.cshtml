@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Kurs_project.Models.Fuel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "ГСМ";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -16,9 +16,9 @@
 
 
     <fieldset>
-        Тип Гсм: @Html.TextBox("TankTypeFind", "")
+        <a class="btn btn-success ">Тип Гсм:</a> @Html.TextBox("TankTypeFind", "")
 
-        <input type="submit" value="Найти" />
+        <input type="submit" value="Найти" class="btn btn-success " />
     </fieldset>
 
 

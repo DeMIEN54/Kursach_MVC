@@ -8,7 +8,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Создать", "Create")
 </p>
 @using (Html.BeginForm("Index", "Sotrudniks", FormMethod.Get))
 {
@@ -16,17 +16,17 @@
 
 
     <fieldset>
-        Фамилия сотрудника: @Html.TextBox("SotrudnikFind", "")
+       <a class="btn btn-success ">Фамилия сотрудника:</a>  @Html.TextBox("SotrudnikFind", "")
 
-        <input type="submit" value="Найти" />
+        <input type="submit" value="Найти" class="btn btn-success " />
     </fieldset>
 
 
 }
 <form action="@Url.Action("Sort", "Sotrudniks")" method="POST">
-    <input type="text" value="25.01.1984" name="begining"/>
-    <input type="text" value="25.01.3190" name="ending"/>
-    <input type="submit"  name="OK" value="Выбрать"/>
+   <a>Дата операции прихода-расхода: от</a>  <input type="text" value="25.01.1984" name="begining"/>
+  <a>до</a>   <input type="text" value="25.01.3190" name="ending"/>
+    <input type="submit"  name="OK" value="Выбрать" class="btn btn-success "/>
 </form>
 <table class="table">
     <tr>
@@ -78,9 +78,9 @@
             @Html.DisplayFor(modelItem => item.About)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.SotrudnikID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.SotrudnikID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.SotrudnikID })
+            @Html.ActionLink("Изменить", "Edit", new { id=item.SotrudnikID }) |
+            @Html.ActionLink("Подробнее", "Details", new { id=item.SotrudnikID }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.SotrudnikID })
         </td>
     </tr>
 }
