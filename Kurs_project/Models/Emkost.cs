@@ -8,6 +8,7 @@
 //------------------------------------------------------------------------------
 
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Kurs_project.Models
 {
@@ -22,10 +23,13 @@ namespace Kurs_project.Models
             this.Operaciya = new HashSet<Operaciya>();
         }
     
-        public int EmkostID { get; set; }      
+        public int EmkostID { get; set; }
+        [Display(Name = "Номер")]
         public int Nomer { get; set; }
+        [Display(Name = "Объем")]
         public double Obyem { get; set; }
         public int FuelID { get; set; }
+        [Display(Name = "Описание")]
         public string About { get; set; }
     
         public virtual Fuel Fuel { get; set; }

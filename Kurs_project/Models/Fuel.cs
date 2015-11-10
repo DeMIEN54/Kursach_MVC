@@ -7,13 +7,15 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Kurs_project.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Fuel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,11 +25,16 @@ namespace Kurs_project.Models
             this.Operaciya = new HashSet<Operaciya>();
         }
     
-        public int FuelID { get; set; }        
+        public int FuelID { get; set; }
+        [Display(Name = "Тип гсм")]
         public string FuelType { get; set; }
+        [Display(Name = "Октановое число")]
         public int Oktan { get; set; }
+        [Display(Name = "Цена за л")]
         public decimal Cena { get; set; }
+        [Display(Name = "Дата")]
         public System.DateTime Data { get; set; }
+        [Display(Name = "Описание")]
         public string About { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

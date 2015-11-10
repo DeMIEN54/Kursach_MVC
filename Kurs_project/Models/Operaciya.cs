@@ -11,14 +11,19 @@ namespace Kurs_project.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Operaciya
     {
+        [Display(Name = "N операции")]
         public int OperaciyaID { get; set; }
+        [Display(Name = "Приход/расход")]
         public double Prih_rash { get; set; }
+        [Display(Name = "Дата")]
         public System.DateTime Data_prih_rash { get; set; }
         public int EmkostID { get; set; }
         public int SotrudnikID { get; set; }
+        [Display(Name = "Описание")]
         public string About { get; set; }
         public int FuelID { get; set; }
     

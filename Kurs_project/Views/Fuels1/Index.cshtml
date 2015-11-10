@@ -16,13 +16,16 @@
 
 
     <fieldset>
-        <a class="btn btn-success ">Тип Гсм:</a> @Html.TextBox("TankTypeFind", "")
+        <a class="btn btn-success ">Тип Гсм:</a> @Html.TextBox("FuelTypeFind", "")
 
         <input type="submit" value="Найти" class="btn btn-success " />
     </fieldset>
-
-
 }
+<form action="@Url.Action("Sort", "Fuels1")" method="POST">
+    <a>Дата операции прихода-расхода: от</a> <input type="text" value="25.01.1984" name="begining" />
+    <a>до</a> <input type="text" value="25.01.3190" name="ending" />
+    <input type="submit" name="OK" value="Выбрать" class="btn btn-success " />
+</form>
 <table class="table">
     <tr>
         <th>

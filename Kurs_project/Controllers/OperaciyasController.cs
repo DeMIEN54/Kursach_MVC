@@ -17,23 +17,15 @@ namespace Kurs_project.Controllers
 
         // GET: Operaciyas
        
-        public ActionResult Index()
+        public ActionResult Index(string SotrudnikFind = "")
         {
-            var operaciya = db.Operaciya.Include(o => o.Emkost).Include(o => o.Fuel).Include(o => o.Sotrudnik);
+            var operaciya =
+                db.Operaciya.Include(o => o.Emkost)
+                    .Include(o => o.Fuel)
+                    .Include(o => o.Sotrudnik)
+                    .Where(o => o.Sotrudnik.Family.StartsWith(SotrudnikFind));
             return View(operaciya.ToList());
-        }
-       
-      /*  public ActionResult Index(string SotrudnikFind="")
-        {
-
-            
-            var tanks = from m in db.Operaciya 
-                        where m.About.StartsWith(SotrudnikFind)//!
-                        select m;
-                          
-            return View(tanks.ToList());           
-        }
-        */
+        }           
 
         // GET: Operaciyas/Details/5
         public ActionResult Details(int? id)

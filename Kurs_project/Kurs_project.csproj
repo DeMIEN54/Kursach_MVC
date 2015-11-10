@@ -239,6 +239,7 @@
     <Content Include="Views\Operaciyas\Edit.cshtml" />
     <Content Include="Views\Operaciyas\Index.cshtml" />
     <Content Include="Views\Sotrudniks\Sort.cshtml" />
+    <Content Include="Views\Fuels1\Sort.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

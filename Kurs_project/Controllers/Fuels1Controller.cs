@@ -13,15 +13,40 @@ namespace Kurs_project.Controllers
     public class Fuels1Controller : Controller
     {
         private azsEntities db = new azsEntities();
+        //Выборка по 2 пункту
+
+        public ActionResult Sort(DateTime begining, DateTime ending)
+        {
+
+            List<Operaciya> operdata =
+                db.Operaciya.Where(s => s.Data_prih_rash >= begining && s.Data_prih_rash <= ending).ToList();
+            ViewBag.time = operdata;
+            double[] mass=new double[operdata.Count];
+            int ss = 0, cc = 0;
+            foreach (var r  in operdata)
+            {
+                IQueryable<Fuel> inc = db.Fuel;
+                foreach (var summ in inc.ToList())
+                {
+                    if (summ.FuelID==r.FuelID)
+                    {
+                        mass[ss] += r.Prih_rash;
+                    }
+                    cc++;
+                }
+                ss++;
+            }
+            ViewBag.summa = mass;
+            return View();
+        }
 
         // GET: Fuels1
-        
-        public ActionResult Index(string TankTypeFind = "")
+        public ActionResult Index(string FuelTypeFind = "")
         {
             
 
             var tanks = from m in db.Fuel
-                        where m.FuelType.StartsWith(TankTypeFind)
+                        where m.FuelType.StartsWith(FuelTypeFind)
                         select m;
 
             return View(tanks.ToList());
